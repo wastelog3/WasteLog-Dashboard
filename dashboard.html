@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pemantauan Sampah</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+      
+    <link rel="stylesheet" href="assets/css/style.css">
+      
+    <link rel="icon" type="image/png" href="assets/images/truck.png">
+</head>
+<body>
+
+    <div id="dashboard-container" class="dashboard-grid">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">WasteLog</h2>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" class="active"><i class="fas fa-tachometer-alt fa-fw"></i> <span class="nav-text">Dashboard</span></a>
+                    </li>
+                    <li>
+                        <button id="manualMeasureBtn"><i class="fas fa-ruler-combined fa-fw"></i> <span class="nav-text">Ukur Manual</span></button>
+                    </li>
+                    <li>
+                        <button id="logoutButton"><i class="fas fa-sign-out-alt fa-fw"></i> <span class="nav-text">Logout</span></button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h2>Dashboard Pemantauan Truk Sampah</h2>
+            </header>
+
+            <div class="content-grid">
+                <div class="content-col-left">
+                    <div class="card">
+                        <h3><i class="fas fa-map-marked-alt"></i> Lokasi Real-time</h3>
+                        <div id="map"></div>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-draw-polygon"></i> Area Geofence</h3>
+                        <button id="addGeofenceBtn" class="btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> Tambah Area
+                        </button>
+                          
+                        <div id="geofenceFormContainer" class="form-container hidden">
+                            <form id="geofenceForm">
+                                <input type="hidden" id="geofenceId">
+                                <label for="geofenceName">Nama Area:</label>
+                                <input type="text" id="geofenceName" placeholder="Contoh: TPA Bantar Gebang" required>
+                                  
+                                <label>Koordinat (Klik di Peta):</label>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="text" id="geofenceLat" placeholder="Latitude" readonly required>
+                                    <input type="text" id="geofenceLon" placeholder="Longitude" readonly required>
+                                </div>
+                                  
+                                <label>Radius (meter):</label>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="number" id="geofenceRadius1" placeholder="Radius Dalam (Masuk)" required>
+                                    <input type="number" id="geofenceRadius2" placeholder="Radius Luar (Keluar)" required>
+                                </div>
+
+                                <div class="form-buttons">
+                                    <button type="submit" class="btn btn-action">Simpan</button>
+                                    <button type="button" id="cancelGeofence" class="btn btn-secondary">Batal</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table id="geofenceTable">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Area</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card" id="manualMeasureResultCard" style="display: none;">
+                        <h3><i class="fas fa-ruler"></i> Hasil Pengukuran Manual</h3>
+                        <div id="manualMeasureResultContent">
+                            <p><strong>Volume:</strong> <span id="manualVolume">-</span></p>
+                            <p><strong>Jarak Sensor:</strong> <span id="manualDistance">-</span></p>
+                            <p><strong>Waktu:</strong> <span id="manualTimestamp">-</span></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="content-col-right">
+                    <div class="card card-full-height">
+                        <h3><i class="far fa-calendar-alt"></i> Riwayat Kunjungan</h3>
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+      
+    <div id="event-popover" class="event-popover" style="display: none;"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
