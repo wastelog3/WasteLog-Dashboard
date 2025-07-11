@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const loginMessage = document.getElementById('loginMessage');
-    const NODE_RED_URL = 'http://192.168.1.24:1880';
+    const NODE_RED_URL = 'https://wastelognodered-services-production.up.railway.app/';
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         loginMessage.textContent = '';
