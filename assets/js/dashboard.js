@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
     // GANTI IP ADDRESS INI DENGAN IP NODE-RED ANDA
-    const NODE_RED_URL = 'https://wastelognodered-services-production.up.railway.app'; 
-    const WEBSOCKET_URL = 'https://wastelognodered-services-production.up.railway.app/ws/realtimelocation';
+    const NODE_RED_URL = 'https://wastelog-nodered-services.up.railway.app';
+    const WEBSOCKET_URL = 'https://wastelog-nodered-services.up.railway.app/ws/realtimelocation';
     const DEVICE_ID = 'gps_wastelog_01';
 
     // --- ELEMENTS ---
